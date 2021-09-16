@@ -1,7 +1,6 @@
 # C-Sharp-Notes
 
 <br>
-<br>
 
 # Index<br>
 
