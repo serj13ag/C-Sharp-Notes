@@ -96,9 +96,7 @@ class Program
 
 <br>
 
-# Конверсия типов
-
-### Cast
+# Конверсия числовых типов данных (cast)
 
 ```c#
 class Program2
@@ -138,17 +136,3 @@ class Program2
 	}
 }
 ```
-
-
-### Methods
-
-| Method     | Description          |Examples  |
-| ------------- |:-------------:| -----:|
-|AsInt(),<br> IsInt() |   Converts a string to an integer.   | ``` if (myString.IsInt())```<br>  ```{myInt=myString.AsInt();```|   
-|AsFloat(), IsFloat()| Converts a string to a floating-point number.|```if (myString.IsFloat())```<br>```{myFloat=myString.AsFloat();}```|
-|AsDecimal(), IsDecimal()| Converts a string to a decimal number..|```if (myString.IsDecimal())```<br>```{myDec=myString.AsDecimal();}```|
-|AsDateTime(), IsDateTime()|Converts a string to an ASP.NET DateTime type.| ```myString="10/10/2012";```<br>``` myDate=myString.AsDateTime();```|
-|AsBool(),<br> IsBool()|Converts a string to a Boolean..| ```myString="True";```<br> ```myBool=myString.AsBool();```|
-|ToString()|Converts any data type to a string.| ```myInt=1234;```<br> ```myString=myInt.ToString();```|
-
-<br>
