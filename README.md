@@ -5,6 +5,10 @@
 # Index<br>
 
 [Hello, World](#Hello-world)<br>
+[Переменные (variables)](#Переменные-variables)<br>
+[Типы данных](#Типы-данных)<br>
+[Конверсия числовых типов данных (cast)](Конверсия-числовых-типов-данных-cast)<br>
+
 
 # Hello, world!
 
