@@ -30,7 +30,7 @@ namespace Lectures
 			// Этот код выводит на экран строку
 			// Console — это класс, так же как Program, но из пространства имен System.
 			Console.WriteLine("Hello, world!");
-        }
-    }
+        	}
+	}
 }
 ```
