@@ -56,7 +56,7 @@ namespace Lectures
 
 <br>
 
-# Переменные
+# Переменные (variables)
 
 ```c#
 class Program
@@ -79,6 +79,11 @@ class Program
 	}
 }
 ```
+
+**Объявление переменных - Define Variables**
+
+**Присваивание переменной - Initialise Varaiable**
+
 
 # Типы данных
 
