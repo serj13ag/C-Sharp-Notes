@@ -34,6 +34,12 @@
 
 **Тип переменной** — это формат области памяти, определяющий множество возможных значений переменной и множество допустимых операций над ней.
 
+**Field
+
+**Property - Properties allow you to control the accessibility of a class's variables. A property is much like a combination of a variable and a method - it can't take any parameters, but you are able to process the value before it's assigned to our returned variable. A property consists of 2 parts, a get and a set method, wrapped inside the property.
+
+**Inheritance - Is inheritance, the ability to create classes which inherits certain aspects from parent classes.
+
 <br>
 
 # Main()
@@ -165,7 +171,7 @@ public string Color
 
 <br>
 
-# Class Visability
+# Access modifiers
 
 | Visability       | Definition         | 
 | ------------- |:-------------| 
@@ -180,6 +186,121 @@ public string Color
 </div>
 
 <br>
+
+# Inheritance
+
+## Virtual and Override 
+
+Here we take the same principle as above however we override the Greet Method as defined in the Animal Base class. To allow this we have to add the keyword Virtual to the greet method. This then allows us to override that method in the child class dog.
+
+```c#
+public class Animal
+{
+    public virtual void Greet()
+    {
+        Console.WriteLine("Hello, I'm some sort of animal!");
+    }
+}
+
+public class Dog : Animal
+{
+    public override void Greet()
+    {
+        Console.WriteLine("Hello, I'm a dog!");
+    }
+}
+
+```
+
+<br>
+
+## Base
+
+In C#, you are not allowed to override a member of a class unless it's marked as ```virtual```. If you want to, you can still access the inherited method, even when you override it, using the ```base keyword```.
+
+```c#
+public override void Greet()
+{
+    /*  
+        you can still access the base class
+        by using the base keyword
+    */
+
+    base.Greet();
+    Console.WriteLine("Yes I am - a dog!");
+}
+```
+
+<br>
+
+
+## Abstract Class
+
+* Abstract classes, marked by the keyword abstract in the class definition, are typically used to define a base class in the hierarchy
+* You ```can't``` create an instance of them.
+
+```c#
+// We can't new up an abstract class
+abstract class FourLeggedAnimal
+    {
+        public virtual string Describe()
+        {
+            return "Not much is known about this four legged animal!";
+        }
+    }
+
+// We can inherit from it !
+class Dog : FourLeggedAnimal
+    {
+
+    }
+
+```
+
+<br>
+
+## Abstract methods
+
+* Abstract methods are only allowed within abstract classes. 
+* We define them as abstract but without any code
+* Then in our inherited class we override that method description .
+
+```c#
+abstract class FourLeggedAnimal
+	{
+	/* 
+	   Define the abstract method definition
+	   from within the abstract class
+	*/
+	public abstract string Describe();
+	}
+
+
+    class Dog : FourLeggedAnimal
+    {
+         /* 
+            Override the abstract method definition
+            from within the sub class and add 
+            code block
+        */
+        public override string Describe()
+        {
+            return "I'm a dog!";
+        }
+    }
+
+```
+
+<br>
+
+
+
+
+
+
+
+
+
 
 # Строки
 
