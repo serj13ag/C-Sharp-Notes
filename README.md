@@ -85,37 +85,6 @@ class Program
 }
 ```
 
-### Объявление переменных - Define Variables
-
-```c#
-int i, j, k;
-char c, ch;
-float f, salary;
-double d;
-```
-
-| Type     | Name          |
-| ------------- |:-------------:| 
-|```int```|i, j, k;|
-|```char```|c, ch;|
-|```float```|f, salary;|
-|```double```|d;|
-
-### Присваивание переменной - Initialise Varaiable
-
-```c#
-variable_name = value;
-```
-
-You can also initialize a varaible at the same time you define it.
-
-```c#
-int d = 3, f = 5;    // Initializing d and f.
-byte z = 22;         // Initializes z.
-double pi = 3.14159; // Declares an approximation of pi.
-char x = 'x';        // The variable x has the value 'x'.
-```
-
 # Типы данных
 
 | Type       | Description          |Examples  |
