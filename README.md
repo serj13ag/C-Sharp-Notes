@@ -4,38 +4,29 @@
 
 # Index<br>
 
-[Hello, World](#Hello-world)<br>
+[Main()](#Main())<br>
 [Переменные (variables)](#Переменные-variables)<br>
 [Типы данных](#Типы-данных)<br>
 [Конверсия числовых типов данных (cast)](#Конверсия-числовых-типов-данных-cast)<br>
 [Строки](#Строки)<br>
 
 
-# Hello, world!
+# Main()
+
+The Main method is the entry point of a C# application. (Libraries and services do not require a Main method as an entry point.) When the application is started, the Main method is the first method that is invoked.
+
+There can only be one entry point in a C# program. If you have more than one class that has a Main method, you must compile your program with the StartupObject compiler option to specify which Main method to use as the entry point.
 
 ```c#
-// Подключение пространства имен System.
 using System;
 
-// Таким образом вы определяете свое пространство имен Lectures.
-namespace Lectures
+class TestClass
 {
-	// Таким образом определяется класс Program.
-	class Program
-	{
-		/*
-		 * static означает, что данное поле, метод или свойство будет принадлежать не каждому объекту класса, а всем им вместе.
-		 * void Main() определяет метод.
-		 * Из-за своего названия Main является точкой входа — это метод, 
-		 * который будет запущен при выполнении программы.
-		 */
-		static void Main()
-		{
-			// Этот код выводит на экран строку
-			// Console — это класс, так же как Program, но из пространства имен System.
-			Console.WriteLine("Hello, world!");
-        	}
-	}
+    static void Main(string[] args)
+    {
+        // Display the number of command line arguments.
+        Console.WriteLine(args.Length);
+    }
 }
 ```
 
