@@ -30,6 +30,10 @@
 Между сборками и пространствами имен нет прямого соответствия: в сборке может хранится несколько пространств имен, а разные классы одного пространства имен могут быть определены в разных сборках.
 После успешной компиляции, в директории проекта создается поддиректория bin/Debug, в которой и оказывается сборка — результат компиляции — exe или dll файлы вашей программы.
 
+**Переменная** — это именованная область памяти.
+
+**Тип переменной** — это формат области памяти, определяющий множество возможных значений переменной и множество допустимых операций над ней.
+
 <br>
 
 # Main()
@@ -53,31 +57,8 @@ class TestClass
 
 <br>
 
-# Переменные (variables)
+# DataTypes 
 
-**Переменная** — это именованная область памяти.
-
-**Тип переменной** — это формат области памяти, определяющий множество возможных значений переменной и множество допустимых операций над ней.
-
-```c#
-class Program
-{
-	static void Main()
-	{
-		
-		// так объявляется переменная: тип (int), затем имя (integerNumber)
-		int integerNumber;
-
-		// так осуществляется присваивание
-		integerNumber = 10;
-
-		// Можно совмещать объявление и присваивание.
-		float floatNumber = 12.34f;
-	}
-}
-```
-
-# Типы данных
 
 | Type       | Description          |Examples  |
 | ------------- |:-------------:| -----:|
@@ -93,46 +74,112 @@ class Program
 
 <br>
 
-# Конверсия числовых типов данных (cast)
+# Operators
 
-**Конверсия типов (cast)** - это преобразование одного типа переменной в другой
+| Operator      | Description          |Examples  |
+| ------------- |:-------------:| -----:|
+| `=`    | Assigns a value to a variable.|	i=6
+| `+`     | Adds a value or variable.     |  i=5+5 |
+| `-` | Subtracts a value or variable.      |   i=5-5 |
+| `*`    | Multiplies a value or variable.  | i=5*5
+| `/`  | Divides a value or variable.| i=5/5
+| `+=`    | Increments a variable. | i += 1|
+| `-=`     | Decrements a variable.     |   i -= 1 |
+| `==` | Equality. Returns true if values are equal.      |   if (i==10) |
+| `!=`    |Inequality. Returns true if values are not equal.  | if (i!=10)
+| `<`  | Less Than | if (i<10)
+| `<=`    | Greater Than | if (i>10)|
+| `>=`     | Less Than or Equal to     |   if (i<=10) |
+| `+` | Adding strings (concatenation).   |  "Hello " + "World" |
+| `.`    | Dot. Separate objects and methods.  | DateTime.Hour
+| `()`  |Parenthesis. Groups values. | (i+5)
+| `()`    | Parenthesis. Passes parameters. | x=Add(i,5)
+| `[]`  | Brackets. Accesses values in arrays or collections. | name[3]
+| `!`    | Not. Reverses true or false. | if (!ready)|
+| `&&`     | Logical AND.     |  if (ready && clear) |
+| `||` | Logical OR.      |   if (ready || clear) |
+
+<br>
+
+# Params Keyword
 
 ```c#
-class Program2
+// We can create a function and pass parameters like this
+static void GreetPersons(string[] names) { }
+
+// However, calling it would be a bit clumsy. In the shortest form, it would look like this:
+GreetPersons(new string[] { "John", "Jane", "Tarzan" });
+```
+
+By Adding the keyword params we can call it like this
+
+```c#
+static void GreetPersons(params string[] names) { }
+
+// And call it like this,
+GreetPersons("John", "Jane", "Tarzan");
+```
+
+Another advantage of using the params approach, is that you are allowed to pass ```zero parameters``` to it as well. 
+
+<br>
+
+# Properties
+
+* Properties allow you to control the accessibility of a class's variables
+* Recommended way to access variables from the outside in an object oriented programming language like C#
+* A property is much like a combination of a variable and a method - it can't take any parameters, but you are able to process the value before it's assigned to our returned variable
+* A property consists of 2 parts, a get and a set method, wrapped inside the property:
+
+```c#
+private string color;
+
+public string Color
 {
-	static void Main()
-	{
-		int integerNumber = 45;
-		double doubleNumber = 34.56;
-
-		doubleNumber = integerNumber;
-		// Это неявная конверсия типов: присвоение переменной одного типа 
-		// значения переменной другого типа без дополнительных усилий. 
-		// Она возможна, когда не происходит потери информации
-
-		integerNumber = (int)doubleNumber;
-		// Это явная конверсия типов. В случае, когда конверсия ведет к потере информации
-		// (в данном случае - дробной части), необходимо явно обозначать свои намерения
-		// по конверсии.
-
-		integerNumber = (int)Math.Round(34.67);
-		// Округление лучше всего делать не конверсией, а функцией Round. 
-		// Кстати, Math - "математическая библиотека" C# - имеет множество других
-		// полезных методов. 
-
-		long longInteger = 4000000000;
-		integerNumber = (int)longInteger;
-		// При такой конверсии происходит ошибка переполнения, которая, однако, остается
-		// незамеченной для компилятора и среды разработки
-
-		// Таким образом можно отловить эти ошибки явно
-		checked
-		{
-			integerNumber = (int)longInteger;
-		}
-	}
+    get { return color; }
+    set { color = value; }
 }
 ```
+
+> The ```get``` method should ```return``` the variable<br>
+> The ```set``` method should ```assign a value``` to it.
+
+However you can add logic and conditionals to the ```Get``` and ```Set``` methods.
+
+```c#
+public string Color
+{
+    get 
+    {
+        return color.ToUpper(); 
+    }
+    set 
+    { 
+        if(value == "Red")
+            color = value; 
+        else
+            Console.WriteLine("This car can only be red!");
+    }
+}
+```
+
+<br>
+
+# Class Visability
+
+| Visability       | Definition         | 
+| ------------- |:-------------| 
+| public    | the member can be reached from anywhere. This is the least restrictive visibility. Enums and interfaces are, by default, publicly visible |
+| protected      | members can only be reached from within the same class, or from a class which inherits from this class.      |
+| internal | members can be reached from within the same project only.|
+| protected internal| the same as internal, except that classes which inherit from this class can reach its members; even from another project.      | 
+| private| can only be reached by members from the same class. This is the most restrictive visibility. Classes and structs are by default set to private visibility.      | 
+
+<div align="center">
+<img src="https://res.cloudinary.com/practicaldev/image/fetch/s--zkOyN7ci--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/q1zqxeq637m4dksosrni.png" width=100%/>
+</div>
+
+<br>
 
 # Строки
 
@@ -284,40 +331,3 @@ class Program
 }
 ```
 
-# Области видимости
-
-Переменная доступна (грубо) внутри тех фигурных скобок, где она определена. Область кода, из которой допустимо обращение к переменной, называется "областью видимости"
-
-Локальная переменная "перекрывает" глобальную с тем же именем.
-
-Однако локальная переменная не может перекрыть другую локальную переменную с тем же именем — возникнет ошибка компиляции.
-
-```c#
-class Program
-{
-	static string globalVariable = "Global variable";
-
-	static void MethodA()
-	{
-		if (globalVariable == "")
-		{
-			string temporalVariable = "Temporal variable";
-			Console.WriteLine(temporalVariable);
-		}
-
-		string localVariable = "Local variable";
-		
-		// Так можно — эта переменная используется в той же области, где и объявлена:
-		Console.WriteLine(localVariable);
-		
-		// Так нельзя — temporalVariable определена только внутри блока if:
-		// Console.WriteLine(temporalVariable); 
-	}
-
-	static void MethodB()
-	{
-		// Console.WriteLine(localVariable); //Нельзя — переменная определена в другом методе.
-		Console.WriteLine(globalVariable); //Можно — это глобальная переменная
-	}
-}
-```
