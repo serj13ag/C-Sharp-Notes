@@ -176,7 +176,7 @@ public string Color
 | private| can only be reached by members from the same class. This is the most restrictive visibility. Classes and structs are by default set to private visibility.      | 
 
 <div align="center">
-<img src="https://res.cloudinary.com/practicaldev/image/fetch/s--zkOyN7ci--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/q1zqxeq637m4dksosrni.png" width=100%/>
+<img src="https://res.cloudinary.com/practicaldev/image/fetch/s--zkOyN7ci--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/q1zqxeq637m4dksosrni.png" width=60%/>
 </div>
 
 <br>
