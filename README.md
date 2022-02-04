@@ -264,6 +264,39 @@ public override void Greet()
 }
 ```
 
+Modify your constructor to the following so that it calls the base class constructor:
+
+```c#
+class Account
+{
+    private string mCode;
+    private string mName;
+    private string mdescription;
+    private double mBalance;
+
+    public Account(string code, string name, string description, double balance)
+    {
+        mCode = code;
+        mName = name;
+        mdescription = description;
+        mBalance = balance;
+    }
+}
+
+class PartyAccount :Account
+{
+    private string mAddress;
+    private string mPhone;
+    
+    public PartyAccount(string code, string name, string description, double balance, string address, string phone)
+    : base(code, name, description, balance)
+    {
+        mAddress = address;
+	mPhone = phone;
+    }
+}
+```
+
 <br>
 
 
