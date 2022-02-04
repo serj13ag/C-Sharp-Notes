@@ -349,3 +349,42 @@ class Program
 	}
 }
 ```
+
+
+
+
+
+
+# Order Of Items In Classes
+
+According to the StyleCop Rules Documentation the ordering is as follows.
+
+### Within a class, struct or interface: (SA1201 and SA1203)
+Constant Fields
+Fields
+Constructors
+Finalizers (Destructors)
+Delegates
+Events
+Enums
+Interfaces (interface implementations)
+Properties
+Indexers
+Methods
+Structs
+Classes
+
+### Within each of these groups order by access: (SA1202)
+public
+internal
+protected internal
+protected
+private
+
+### Within each of the access groups, order by static, then non-static: (SA1204)
+static
+non-static
+
+### Within each of the static/non-static groups of fields, order by readonly, then non-readonly : (SA1214 and SA1215)
+readonly
+non-readonly
