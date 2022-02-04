@@ -10,8 +10,12 @@
 [Operators](#Operators)<br>
 [Params Keyword](#Params-Keyword)<br>
 [Properties](#Properties)<br>
-[Access modifiers](#Access-modifiers)<br>
+[Access Modifiers](#Access-Modifiers)<br>
 [Inheritance](#Inheritance)<br>
+
+
+
+[Order Of Items In Classes](#Order-Of-Items-In-Classes)<br>
 
 
 
@@ -195,7 +199,7 @@ public string Color
 
 
 
-# Access modifiers
+# Access Modifiers
 
 | Visability       | Definition         | 
 | ------------- |:-------------| 
