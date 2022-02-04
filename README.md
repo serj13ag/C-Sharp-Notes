@@ -4,11 +4,17 @@
 
 # Index<br>
 
+[Terminology](#Terminology)<br>
 [Main()](#Main)<br>
-[Переменные (variables)](#Переменные-variables)<br>
-[Типы данных](#Типы-данных)<br>
-[Конверсия числовых типов данных (cast)](#Конверсия-числовых-типов-данных-cast)<br>
-[Строки](#Строки)<br>
+[DataTypes](#DataTypes)<br>
+[Operators](#Operators)<br>
+[Params Keyword](#Params-Keyword)<br>
+[Properties](#Properties)<br>
+[Access modifiers](#Access-modifiers)<br>
+[Inheritance](#Inheritance)<br>
+
+
+
 
 # Terminology
 
@@ -42,6 +48,9 @@
 
 <br>
 
+
+
+
 # Main()
 
 The Main method is the entry point of a C# application. (Libraries and services do not require a Main method as an entry point.) When the application is started, the Main method is the first method that is invoked.
@@ -63,6 +72,9 @@ class TestClass
 
 <br>
 
+
+
+
 # DataTypes 
 
 
@@ -79,6 +91,9 @@ class TestClass
 | `long`  | 64-bit signed integer type | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
 
 <br>
+
+
+
 
 # Operators
 
@@ -107,6 +122,9 @@ class TestClass
 
 <br>
 
+
+
+
 # Params Keyword
 
 ```c#
@@ -129,6 +147,9 @@ GreetPersons("John", "Jane", "Tarzan");
 Another advantage of using the params approach, is that you are allowed to pass ```zero parameters``` to it as well. 
 
 <br>
+
+
+
 
 # Properties
 
@@ -171,6 +192,9 @@ public string Color
 
 <br>
 
+
+
+
 # Access modifiers
 
 | Visability       | Definition         | 
@@ -187,7 +211,11 @@ public string Color
 
 <br>
 
+
+
+
 # Inheritance
+
 
 ## Virtual and Override 
 
@@ -213,6 +241,7 @@ public class Dog : Animal
 ```
 
 <br>
+
 
 ## Base
 
@@ -258,6 +287,7 @@ class Dog : FourLeggedAnimal
 ```
 
 <br>
+
 
 ## Abstract methods
 
