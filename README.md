@@ -283,7 +283,7 @@ class Account
     }
 }
 
-class PartyAccount :Account
+class PartyAccount : Account
 {
     private string mAddress;
     private string mPhone;
