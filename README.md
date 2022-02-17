@@ -642,7 +642,7 @@ var sortedPeople2 = people.OrderBy(p => p.Age);
 
 ## ThenBy(), ThenByDescending()
 
-ThenBy() used for second level sorting in ascending order.
+ThenBy() used for second level sorting in ascending order.<br>
 ThenByDescending() used for second level sorting in descending order.
 
 ```c#
