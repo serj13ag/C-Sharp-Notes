@@ -528,9 +528,7 @@ var people = new List<Person>
     new Person ("Alice", 24)
 };
 var names = people.Select(u => u.Name);
- 
-foreach (string n in names)
-     Console.WriteLine(n);
+// Tom, Bob, Sam, Alice
 ```
 
 ### SelectMany
@@ -538,8 +536,8 @@ foreach (string n in names)
 The SelectMany() method is used to "flatten" a sequence in which each of the elements of the sequence is a separate, subordinate sequence.
 
 ```c#
-//class Company(string Name, List<Person> Staff);
-//class Person(string Name);
+// class Company(string Name, List<Person> Staff);
+// class Person(string Name);
 
 var companies = new List<Company>
 {
@@ -547,16 +545,7 @@ var companies = new List<Company>
     new Company("Google", new List<Person> {new Person("Sam"), new Person("Mike")}),
 };
 var employees = companies.SelectMany(c => c.Staff);
-
-foreach (var emp in employees)
-    Console.WriteLine($"{emp.Name}");
-
-/*
-Tom
-Bob
-Sam
-Mike
-*/
+// Tom, Bob, Sam, Mike
 
 var companies = new List<Company>
 {
@@ -569,7 +558,6 @@ var employees = companies.SelectMany(c => c.Staff,
  
 foreach (var emp in employees)
     Console.WriteLine($"{emp.Name} - {emp.Company}");
-
 /*
 Tom - Microsoft
 Bob - Microsoft
@@ -588,7 +576,7 @@ Where() returns a new sequence containing all the elements from the target seque
 string[] people = { "Tom", "Alice", "Bob", "Sam", "Tim", "Tomas", "Bill" };
  
 var selectedPeople = people.Where(p => p.Length == 3);
-// "Tom", "Bob", "Sam", "Tim"
+// Tom, Bob, Sam, Tim
 
 var people = new List<Person>
 {
@@ -599,7 +587,7 @@ var people = new List<Person>
 };
 
 var selectedPeople = people.Where(p=> p.Age > 25);
-// "Bob - 27", "Sam - 29"
+// Bob - 27, Sam - 29
 ```
 
 ### OfType()
@@ -620,7 +608,7 @@ var people= new List<Person>
 };
  
 var students = people.OfType<Student>();
-// "Tom", "Bob"
+// Tom, Bob
 ```
 
 ## Collection Sorting
