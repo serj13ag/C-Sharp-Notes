@@ -12,7 +12,8 @@
 [Properties](#Properties)<br>
 [Access Modifiers](#Access-Modifiers)<br>
 [Inheritance](#Inheritance)<br>
-
+[Lazy Init](#Lazy-Init)<br>
+[Lambdas LINQ](#Lambdas-LINQ)<br>
 
 
 [Order Of Items In Classes](#Order-Of-Items-In-Classes)<br>
@@ -363,61 +364,6 @@ abstract class FourLeggedAnimal
 
 
 
-
-
-
-
-
-
-# Строки
-
-**Строки** - это последовательности символов
-
-```c#
-class Program
-{
-	public static void Main()
-	{
-		string myString = "Hello, world!";
-
-		// + — это операция "приписывания" одной строки к другой:
-		string s = "Hello" + " " + "world";
-
-		// Можно обращаться к отдельным символам
-		char c = myString[1]; //'e' — нумерация символов с нуля.
-		char myChar = 'e'; // одинарные кавычки используются для символов. Двойные — для строк.
-
-		//У строк есть собственные методы и переменные (правильно называть это свойствами),
-		//которые позволяют узнать информацию о строке 
-		Console.WriteLine(myString.Length);
-
-		myString = myString.Substring(0, 5);
-		Console.WriteLine(myString);
-
-		string strangeSymbols = "© 2014 Σγμβόλσ";
-
-		//Тип string может иметь особое значение - null.
-		//Это не пустая строка, а отсутствие всякой строки.
-		myString = null;
-
-		//Интересно, что тип int такого значения иметь не может.
-		//int a=null;
-
-		int number = int.Parse("42"); //Из строки в число
-		string numString = 42.ToString(); // Из числа в строку
-		double number2 = double.Parse("34.42"); // Зависит от настроек операционной системы
-
-		//Следующий вызов не зависит от настроек и всегда ожидает точку в качестве разделителя:
-		number2 = double.Parse("34.42", CultureInfo.InvariantCulture);
-
-		//Следующий вызов не зависит от настроек и всегда использует точку в качестве разделителя:
-		string invariantNumber2 = number2.ToString(CultureInfo.InvariantCulture);
-		Console.WriteLine(invariantNumber2); //34.42
-	}
-}
-```
-
-
 # Lazy Init
 
 ### Проверка на null
@@ -546,7 +492,7 @@ class Test
 }
 ```
 
-LazyInitializer
+### LazyInitializer
 
 Ещё есть вариант не оборачивать класс в обёртку Lazy, а вместо этого использовать функционал LazyInitializer. Этот класс имеет один статический метод EnsureInitialized с кучей перегрузок, позволяющих творить всякое, в том числе делать потокобезопасность и писать кастомный код для создания объекта, но основная суть которого заключается в следующем. Проверить, не инициализирован ли объект. Если нет, то инициализировать. Вернуть объект. С использованием данного класса, мы можем переписать наш код так:
 
@@ -558,6 +504,207 @@ class Test
 }
 ```
 
+<br>
+
+
+
+
+# Lambdas LINQ
+
+## Projection
+
+### Select
+
+Select() takes each source element, transforms it, and returns a sequence of the transformed values.
+
+```c#
+//class Person(string Name, int Age);
+
+var people = new List<Person>
+{
+    new Person ("Tom", 23),
+    new Person ("Bob", 27),
+    new Person ("Sam", 29),
+    new Person ("Alice", 24)
+};
+var names = people.Select(u => u.Name);
+ 
+foreach (string n in names)
+     Console.WriteLine(n);
+```
+
+### SelectMany
+
+The SelectMany() method is used to "flatten" a sequence in which each of the elements of the sequence is a separate, subordinate sequence.
+
+```c#
+//class Company(string Name, List<Person> Staff);
+//class Person(string Name);
+
+var companies = new List<Company>
+{
+    new Company("Microsoft", new List<Person> {new Person("Tom"), new Person("Bob")}),
+    new Company("Google", new List<Person> {new Person("Sam"), new Person("Mike")}),
+};
+var employees = companies.SelectMany(c => c.Staff);
+
+foreach (var emp in employees)
+    Console.WriteLine($"{emp.Name}");
+
+/*
+Tom
+Bob
+Sam
+Mike
+*/
+
+var companies = new List<Company>
+{
+    new Company("Microsoft", new List<Person> {new Person("Tom"), new Person("Bob")}),
+    new Company("Google", new List<Person> {new Person("Sam"), new Person("Mike")}),
+};
+ 
+var employees = companies.SelectMany(c => c.Staff,
+                                    (c, emp)=> new { Name = emp.Name, Company = c.Name });
+ 
+foreach (var emp in employees)
+    Console.WriteLine($"{emp.Name} - {emp.Company}");
+
+/*
+Tom - Microsoft
+Bob - Microsoft
+Sam - Google
+Mike - Google
+*/
+```
+
+## Collection Filtration
+
+### Where
+
+Where() returns a new sequence containing all the elements from the target sequence that meet a specified criteria.
+
+```c#
+string[] people = { "Tom", "Alice", "Bob", "Sam", "Tim", "Tomas", "Bill" };
+ 
+var selectedPeople = people.Where(p => p.Length == 3);
+// "Tom", "Bob", "Sam", "Tim"
+
+var people = new List<Person>
+{
+    new Person ("Tom", 23, new List<string> {"english", "german"}),
+    new Person ("Bob", 27, new List<string> {"english", "french" }),
+    new Person ("Sam", 29, new List<string>  { "english", "spanish" }),
+    new Person ("Alice", 24, new List<string> {"spanish", "german" })
+};
+
+var selectedPeople = people.Where(p=> p.Age > 25);
+// "Bob - 27", "Sam - 29"
+```
+
+### OfType()
+
+OfType() is a filter operation and it filters the collection based on the ability to cast an element in a collection to a specified type. It searches elements by their type only.
+
+```c#
+// class Person(string Name);
+// class Student(string Name): Person(Name);
+// class Employee(string Name) : Person(Name);
+
+var people= new List<Person>
+{
+    new Student("Tom"),
+    new Person("Sam"),
+    new Student("Bob"),
+    new Employee("Mike")
+};
+ 
+var students = people.OfType<Student>();
+// "Tom", "Bob"
+```
+
+## Collection Sorting
+
+### OrderBy(), OrderByDescending()
+
+OrderBy() sorts the elements in the collection based on specified fields in ascending order.
+OrderByDescending() sorts the collection based on specified fields in descending order.
+
+```c#
+int[] numbers = { 3, 12, 4, 10 };
+var orderedNumbers = numbers.OrderBy(n=>n);
+// 3, 4, 10, 12
+ 
+string[] people = { "Tom", "Bob", "Sam" };
+var orderedPeople = people.OrderBy(p=>p);
+// Bob, Sam, Tom
+
+// class Person(string Name, int Age);
+var people = new List<Person>
+{
+    new Person("Tom", 37),
+    new Person("Sam", 28),
+    new Person("Tom", 22),
+    new Person("Bob", 41),
+};
+
+var sortedPeople2 = people.OrderBy(p => p.Age);
+// Tom - 22, Sam - 28, Tom - 37, Bob - 41
+```
+
+## ThenBy(), ThenByDescending()
+
+ThenBy() used for second level sorting in ascending order.
+ThenByDescending() used for second level sorting in descending order.
+
+```c#
+var sortedPeople2 = people.OrderBy(p => p.Name).ThenByDescending(p=>p.Age);
+// Bob - 41, Sam - 28, Tom - 22, Tom - 37
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* **All**: if ALL items satisfy our condition;
+* **Any**: if ANY item satisfy our condition;
+* **Contains**: if collection CONTAIN this item
+---
+* **Where**: returns items from collection WHERE condition is met;
+* **FirstOrDefault**: returns FIRST item where condition is met or NULL;
+---
+* **OrderBy**: sorts elements in the ascending order;
+* **OrderByDescending**:
+* **ThenBy**: additional criteria to sorting elemenst ascending;
+* **ThenByDescending**:
+---
+* **Distinct**: delete dublicates from collection;
+* **Except**: returns elements that only exist in one of two collections
+
+Except: возвращает разность двух коллекцию, то есть те элементы, которые создаются только в одной коллекции
+
+Union: объединяет две однородные коллекции
+
+Intersect: возвращает пересечение двух коллекций, то есть те элементы, которые встречаются в обоих коллекциях
+
+Count: подсчитывает количество элементов коллекции, которые удовлетворяют определенному условию
+
+Sum: подсчитывает сумму числовых значений в коллекции
+
+Average: подсчитывает cреднее значение числовых значений в коллекции
+
+Min: находит минимальное значение
+
+Max: находит максимальное значение
 
 
 
