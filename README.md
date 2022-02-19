@@ -12,6 +12,7 @@
 [Properties](#Properties)<br>
 [Access Modifiers](#Access-Modifiers)<br>
 [Inheritance](#Inheritance)<br>
+[Safe Casting](#Safe-Casting)<br>
 [Lazy Init](#Lazy-Init)<br>
 [Lambdas LINQ](#Lambdas-LINQ)<br>
 
@@ -357,6 +358,32 @@ abstract class FourLeggedAnimal
         }
     }
 
+```
+
+<br>
+
+
+
+
+# Safe Casting
+
+A better way to cast safely is to use the as operator, which returns null when input is not a string. This also avoids the small performance hit of accessing input twice.
+
+```c#
+string text = input as string;
+if(text != null)
+{
+  ...
+}
+```
+
+The new method of casting safely in C# 7 is to use is with type patterns. Here is an example of how to use is with type patterns to safely cast input to a string.
+
+```c#
+if(input is string text)
+{
+  ...
+}
 ```
 
 <br>
