@@ -46,11 +46,11 @@
 
 **Тип переменной** — это формат области памяти, определяющий множество возможных значений переменной и множество допустимых операций над ней.
 
-**Field
+**Field**
 
-**Property - Properties allow you to control the accessibility of a class's variables. A property is much like a combination of a variable and a method - it can't take any parameters, but you are able to process the value before it's assigned to our returned variable. A property consists of 2 parts, a get and a set method, wrapped inside the property.
+**Property** - Properties allow you to control the accessibility of a class's variables. A property is much like a combination of a variable and a method - it can't take any parameters, but you are able to process the value before it's assigned to our returned variable. A property consists of 2 parts, a get and a set method, wrapped inside the property.
 
-**Inheritance - Is inheritance, the ability to create classes which inherits certain aspects from parent classes.
+**Inheritance** - Is inheritance, the ability to create classes which inherits certain aspects from parent classes.
 
 <br>
 
@@ -677,50 +677,91 @@ var sortedPeople2 = people.OrderBy(p => p.Name).ThenByDescending(p=>p.Age);
 // Bob - 41, Sam - 28, Tom - 22, Tom - 37
 ```
 
+## Collection Usage
 
+**Except()** produces the set difference of two sequences.
 
+```c#
+string[] soft = { "Microsoft", "Google", "Apple"};
+string[] hard = { "Apple", "IBM", "Samsung"};
 
+var result = soft.Except(hard);
+// Microsoft, Google
+```
 
+**Intersect()** produces the set intersection of two sequences.
 
+```c#
+string[] soft = { "Microsoft", "Google", "Apple"};
+string[] hard = { "Apple", "IBM", "Samsung"};
 
+var result = soft.Intersect(hard);
+// Apple
+```
 
+**Distinct()** returns distinct elements from a sequence.
 
+```c#
+string[] soft = { "Microsoft", "Google", "Apple", "Microsoft", "Google" };
 
+var result = soft.Distinct();
+// Microsoft, Google, Apple
+```
 
+**Union()** produces the set union of two sequences.
 
+```c#
+string[] soft = { "Microsoft", "Google", "Apple"};
+string[] hard = { "Apple", "IBM", "Samsung"};
 
+var result = soft.Union(hard);
+// Microsoft, Google, Apple, IBM, Samsung
+```
 
-* **All**: if ALL items satisfy our condition;
-* **Any**: if ANY item satisfy our condition;
-* **Contains**: if collection CONTAIN this item
----
-* **Where**: returns items from collection WHERE condition is met;
-* **FirstOrDefault**: returns FIRST item where condition is met or NULL;
----
-* **OrderBy**: sorts elements in the ascending order;
-* **OrderByDescending**:
-* **ThenBy**: additional criteria to sorting elemenst ascending;
-* **ThenByDescending**:
----
-* **Distinct**: delete dublicates from collection;
-* **Except**: returns elements that only exist in one of two collections
+**Concat()** if we don't want to exclude dublicates like in Union()
 
-Except: возвращает разность двух коллекцию, то есть те элементы, которые создаются только в одной коллекции
+## Collection Checks and Gets
 
-Union: объединяет две однородные коллекции
+**All()** determines whether all elements of a sequence satisfy a condition.
+**Any()** determines whether any element of a sequence exists or satisfies a condition.
 
-Intersect: возвращает пересечение двух коллекций, то есть те элементы, которые встречаются в обоих коллекциях
+```c#
+string[] people = { "Tom", "Tim", "Bob", "Sam" };
 
-Count: подсчитывает количество элементов коллекции, которые удовлетворяют определенному условию
+bool allHas3Chars = people.All(s => s.Length == 3);     // true
+bool allStartsWithT = people.All(s => s.StartsWith("T"));   // false
 
-Sum: подсчитывает сумму числовых значений в коллекции
+bool allHasMore3Chars = people.Any(s => s.Length > 3);     // false
+bool allStartsWithT = people.Any(s => s.StartsWith("T"));   // true
+```
 
-Average: подсчитывает cреднее значение числовых значений в коллекции
+**Contains** determines whether a sequence contains a specified element.
 
-Min: находит минимальное значение
+```c#
+string[] people = { "Tom", "Tim", "Bob", "Sam" };
 
-Max: находит максимальное значение
+bool hasTom = people.Contains("Tom");     // true
+bool hasMike = people.Contains("Mike");     // false
+```
 
+**FirstOrDefault()** returns the first element of a sequence, or a default value if no element is found.
+**LastOrDefault()** returns the last element of a sequence, or a default value if no element is found.
+
+```c#
+string[] people = { "Tom", "Bob", "Kate", "Tim", "Mike", "Sam" };
+
+var first = people.FirstOrDefault();  // Tom
+var firstWith4Chars = people.FirstOrDefault(s => s.Length == 4);  // Kate
+var firstOrDefault = new string[] {}.FirstOrDefault();  // null
+```
+
+## Aggregate Operations
+
+**Count()**
+**Sum()**
+**Min()**
+**Max()**
+**Average()** 
 
 
 
