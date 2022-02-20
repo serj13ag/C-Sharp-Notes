@@ -642,7 +642,7 @@ var students = people.OfType<Student>();
 
 ### OrderBy(), OrderByDescending()
 
-OrderBy() sorts the elements in the collection based on specified fields in ascending order.
+OrderBy() sorts the elements in the collection based on specified fields in ascending order.<br>
 OrderByDescending() sorts the collection based on specified fields in descending order.
 
 ```c#
@@ -722,7 +722,7 @@ var result = soft.Union(hard);
 
 ## Collection Checks and Gets
 
-**All()** determines whether all elements of a sequence satisfy a condition.
+**All()** determines whether all elements of a sequence satisfy a condition.<br>
 **Any()** determines whether any element of a sequence exists or satisfies a condition.
 
 ```c#
@@ -744,7 +744,7 @@ bool hasTom = people.Contains("Tom");     // true
 bool hasMike = people.Contains("Mike");     // false
 ```
 
-**FirstOrDefault()** returns the first element of a sequence, or a default value if no element is found.
+**FirstOrDefault()** returns the first element of a sequence, or a default value if no element is found.<br>
 **LastOrDefault()** returns the last element of a sequence, or a default value if no element is found.
 
 ```c#
@@ -757,12 +757,13 @@ var firstOrDefault = new string[] {}.FirstOrDefault();  // null
 
 ## Aggregate Operations
 
-**Count()**
-**Sum()**
-**Min()**
-**Max()**
+**Count()**<br>
+**Sum()**<br>
+**Min()**<br>
+**Max()**<br>
 **Average()** 
 
+<br>
 
 
 
